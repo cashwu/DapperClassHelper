@@ -32,6 +32,13 @@
             this.tbSqlServer = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.cbDbs = new System.Windows.Forms.ComboBox();
+            this.rbCommandText = new System.Windows.Forms.RadioButton();
+            this.rbSP = new System.Windows.Forms.RadioButton();
+            this.tbCommandText = new System.Windows.Forms.TextBox();
+            this.tbClassName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbClass = new System.Windows.Forms.TextBox();
+            this.btnGetClass = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -65,16 +72,92 @@
             // 
             this.cbDbs.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDbs.FormattingEnabled = true;
-            this.cbDbs.Location = new System.Drawing.Point(15, 38);
+            this.cbDbs.Location = new System.Drawing.Point(296, 10);
             this.cbDbs.Name = "cbDbs";
             this.cbDbs.Size = new System.Drawing.Size(121, 20);
             this.cbDbs.TabIndex = 3;
+            // 
+            // rbCommandText
+            // 
+            this.rbCommandText.AutoSize = true;
+            this.rbCommandText.Checked = true;
+            this.rbCommandText.Location = new System.Drawing.Point(15, 44);
+            this.rbCommandText.Name = "rbCommandText";
+            this.rbCommandText.Size = new System.Drawing.Size(93, 16);
+            this.rbCommandText.TabIndex = 4;
+            this.rbCommandText.TabStop = true;
+            this.rbCommandText.Tag = "action";
+            this.rbCommandText.Text = "CommandText";
+            this.rbCommandText.UseVisualStyleBackColor = true;
+            // 
+            // rbSP
+            // 
+            this.rbSP.AutoSize = true;
+            this.rbSP.Location = new System.Drawing.Point(115, 43);
+            this.rbSP.Name = "rbSP";
+            this.rbSP.Size = new System.Drawing.Size(35, 16);
+            this.rbSP.TabIndex = 5;
+            this.rbSP.Tag = "action";
+            this.rbSP.Text = "SP";
+            this.rbSP.UseVisualStyleBackColor = true;
+            // 
+            // tbCommandText
+            // 
+            this.tbCommandText.Location = new System.Drawing.Point(15, 67);
+            this.tbCommandText.Multiline = true;
+            this.tbCommandText.Name = "tbCommandText";
+            this.tbCommandText.Size = new System.Drawing.Size(526, 131);
+            this.tbCommandText.TabIndex = 6;
+            // 
+            // tbClassName
+            // 
+            this.tbClassName.Location = new System.Drawing.Point(86, 216);
+            this.tbClassName.Name = "tbClassName";
+            this.tbClassName.Size = new System.Drawing.Size(100, 22);
+            this.tbClassName.TabIndex = 7;
+            this.tbClassName.Text = "Info";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 219);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 12);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Class Name";
+            // 
+            // tbClass
+            // 
+            this.tbClass.Location = new System.Drawing.Point(15, 262);
+            this.tbClass.Multiline = true;
+            this.tbClass.Name = "tbClass";
+            this.tbClass.ReadOnly = true;
+            this.tbClass.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbClass.Size = new System.Drawing.Size(526, 310);
+            this.tbClass.TabIndex = 9;
+            // 
+            // btnGetClass
+            // 
+            this.btnGetClass.Location = new System.Drawing.Point(296, 207);
+            this.btnGetClass.Name = "btnGetClass";
+            this.btnGetClass.Size = new System.Drawing.Size(105, 44);
+            this.btnGetClass.TabIndex = 10;
+            this.btnGetClass.Text = "Get Class";
+            this.btnGetClass.UseVisualStyleBackColor = true;
+            this.btnGetClass.Click += new System.EventHandler(this.btnGetClass_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 371);
+            this.ClientSize = new System.Drawing.Size(553, 589);
+            this.Controls.Add(this.btnGetClass);
+            this.Controls.Add(this.tbClass);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbClassName);
+            this.Controls.Add(this.tbCommandText);
+            this.Controls.Add(this.rbSP);
+            this.Controls.Add(this.rbCommandText);
             this.Controls.Add(this.cbDbs);
             this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.tbSqlServer);
@@ -92,6 +175,13 @@
         private System.Windows.Forms.TextBox tbSqlServer;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.ComboBox cbDbs;
+        private System.Windows.Forms.RadioButton rbCommandText;
+        private System.Windows.Forms.RadioButton rbSP;
+        private System.Windows.Forms.TextBox tbCommandText;
+        private System.Windows.Forms.TextBox tbClassName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbClass;
+        private System.Windows.Forms.Button btnGetClass;
     }
 }
 
