@@ -93,7 +93,17 @@ namespace DapperClassHelper
             }
 
             var className = string.IsNullOrWhiteSpace(tbClassName.Text) ? "Info" : tbClassName.Text;
-            var classText = this.GetClassTextByCommandText(tbCommandText.Text, className);
+
+            var classText = string.Empty;
+
+            if (rbCommandText.Checked)
+            {
+                classText = this.GetClassTextByCommandText(tbCommandText.Text, className);
+            }
+            else if (rbSP.Checked)
+            {
+                classText = this.GetClassTextBySp(tbCommandText.Text, className);
+            }
 
             tbClass.Text = classText;
         }
@@ -150,75 +160,63 @@ namespace DapperClassHelper
             return result;
         }
 
-        //public static string DumpSpClass(this IDbConnection connection, string spName, string className = "Info")
-        //{
-        //    if (connection.State != ConnectionState.Open)
-        //    {
-        //        connection.Open();
-        //    }
+        private string GetClassTextBySp(string sql, string className)
+        {
+            var result = string.Empty;
+            SqlConnection conn = null;
+            try
+            {
+                conn = this.GetConnectionWithDb();
 
-        //    var cmd = connection.CreateCommand();
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    cmd.CommandText = spName;
-        //    var reader = cmd.ExecuteReader();
+                conn.Open();
 
-        //    var result = GetColumnsByExecuteReader(reader, className);
+                var cmd = conn.CreateCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sql;
 
-        //    return result;
-        //}
+                var paramArray = this.GetSqlParameter();
+                for (int i = 0; i < paramArray.Length; i++)
+                {
+                    var parameters = cmd.Parameters;
+                    string arrSParam = paramArray[i];
+                    int num = i + 1;
+                    i = num;
+                    parameters.Add(new SqlParameter(arrSParam, paramArray[num]));
+                }
 
-        //public static string DumpSpClass(this IDbConnection connection, string spName, string className = "Info", params string[] paramArray)
-        //{
-        //    if (connection.State != ConnectionState.Open)
-        //    {
-        //        connection.Open();
-        //    }
+                var reader = cmd.ExecuteReader();
 
-        //    var cmd = connection.CreateCommand();
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    cmd.CommandText = spName;
+                result = GetColumnsByExecuteReader(reader, className);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error .." + ex.ToString());
+            }
+            finally
+            {
+                conn?.Close();
+            }
 
-        //    for (int i = 0; i < (int)paramArray.Length; i++)
-        //    {
-        //        var parameters = cmd.Parameters;
-        //        string arrSParam = paramArray[i];
-        //        int num = i + 1;
-        //        i = num;
-        //        parameters.Add(new SqlParameter(arrSParam, paramArray[num]));
-        //    }
+            return result;
+        }
 
-        //    var reader = cmd.ExecuteReader();
+        private string[] GetSqlParameter()
+        {
+            if (string.IsNullOrWhiteSpace(tbSqlParameter.Text))
+            {
+                return Array.Empty<string>();
+            }
 
-        //    var result = GetColumnsByExecuteReader(reader, className);
+            var parameterText = tbSqlParameter.Text
+                .Replace("@", "")
+                .Replace("\r", "")
+                .Replace("\n", "")
+                .Replace("\t", "")
+                .Replace("'", "")
+                .Replace("=", ",");
 
-        //    return result;
-        //}
-
-        //public static string DumpSpClass(this IDbConnection connection, string spName, NameValueCollection fields, string className = "Info")
-        //{
-        //    if (connection.State != ConnectionState.Open)
-        //    {
-        //        connection.Open();
-        //    }
-
-        //    var cmd = connection.CreateCommand();
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    cmd.CommandText = spName;
-
-        //    if (fields != null)
-        //    {
-        //        for (int i = 0; i < fields.Count; i++)
-        //        {
-        //            cmd.Parameters.Add(new SqlParameter(fields.Keys[i].ToString(), fields[i]));
-        //        }
-        //    }
-
-        //    var reader = cmd.ExecuteReader();
-
-        //    var result = GetColumnsByExecuteReader(reader, className);
-
-        //    return result;
-        //}
+            return parameterText.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries);
+        }
 
         private string GetColumnsByExecuteReader(IDataReader reader, string className)
         {

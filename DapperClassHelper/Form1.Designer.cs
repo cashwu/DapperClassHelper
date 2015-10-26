@@ -39,6 +39,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbClass = new System.Windows.Forms.TextBox();
             this.btnGetClass = new System.Windows.Forms.Button();
+            this.tbSqlParameter = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -111,7 +113,7 @@
             // 
             // tbClassName
             // 
-            this.tbClassName.Location = new System.Drawing.Point(86, 216);
+            this.tbClassName.Location = new System.Drawing.Point(86, 281);
             this.tbClassName.Name = "tbClassName";
             this.tbClassName.Size = new System.Drawing.Size(100, 22);
             this.tbClassName.TabIndex = 7;
@@ -120,7 +122,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 219);
+            this.label2.Location = new System.Drawing.Point(21, 284);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 8;
@@ -128,17 +130,17 @@
             // 
             // tbClass
             // 
-            this.tbClass.Location = new System.Drawing.Point(15, 262);
+            this.tbClass.Location = new System.Drawing.Point(15, 337);
             this.tbClass.Multiline = true;
             this.tbClass.Name = "tbClass";
             this.tbClass.ReadOnly = true;
             this.tbClass.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbClass.Size = new System.Drawing.Size(526, 310);
+            this.tbClass.Size = new System.Drawing.Size(526, 234);
             this.tbClass.TabIndex = 9;
             // 
             // btnGetClass
             // 
-            this.btnGetClass.Location = new System.Drawing.Point(296, 207);
+            this.btnGetClass.Location = new System.Drawing.Point(417, 269);
             this.btnGetClass.Name = "btnGetClass";
             this.btnGetClass.Size = new System.Drawing.Size(105, 44);
             this.btnGetClass.TabIndex = 10;
@@ -146,11 +148,30 @@
             this.btnGetClass.UseVisualStyleBackColor = true;
             this.btnGetClass.Click += new System.EventHandler(this.btnGetClass_Click);
             // 
+            // tbSqlParameter
+            // 
+            this.tbSqlParameter.Location = new System.Drawing.Point(15, 241);
+            this.tbSqlParameter.Multiline = true;
+            this.tbSqlParameter.Name = "tbSqlParameter";
+            this.tbSqlParameter.Size = new System.Drawing.Size(526, 22);
+            this.tbSqlParameter.TabIndex = 11;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(23, 223);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 12);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "SP SqlParameter";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 589);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tbSqlParameter);
             this.Controls.Add(this.btnGetClass);
             this.Controls.Add(this.tbClass);
             this.Controls.Add(this.label2);
@@ -182,6 +203,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbClass;
         private System.Windows.Forms.Button btnGetClass;
+        private System.Windows.Forms.TextBox tbSqlParameter;
+        private System.Windows.Forms.Label label3;
     }
 }
 
