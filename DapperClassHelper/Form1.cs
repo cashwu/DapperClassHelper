@@ -1,11 +1,11 @@
-﻿using Dapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Dapper;
 
 namespace DapperClassHelper
 {
@@ -154,7 +154,10 @@ namespace DapperClassHelper
             }
             finally
             {
-                conn?.Close();
+                if (conn != null)
+                {
+                    conn.Close();
+                }
             }
 
             return result;
@@ -194,7 +197,10 @@ namespace DapperClassHelper
             }
             finally
             {
-                conn?.Close();
+                if (conn != null)
+                {
+                    conn.Close();
+                }
             }
 
             return result;
@@ -204,7 +210,7 @@ namespace DapperClassHelper
         {
             if (string.IsNullOrWhiteSpace(tbSqlParameter.Text))
             {
-                return Array.Empty<string>();
+                return new string[0];
             }
 
             var parameterText = tbSqlParameter.Text
